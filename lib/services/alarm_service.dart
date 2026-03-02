@@ -85,7 +85,7 @@ class AlarmService {
   static Future<void> showAlarmNotification() async {
     try {
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
-      AndroidNotificationDetails(
+          AndroidNotificationDetails(
         'alarm_channel',
         'Alarm Notifications',
         channelDescription: 'Channel for alarm notifications',
@@ -100,13 +100,13 @@ class AlarmService {
       );
 
       const NotificationDetails platformChannelSpecifics =
-      NotificationDetails(android: androidPlatformChannelSpecifics);
+          NotificationDetails(android: androidPlatformChannelSpecifics);
 
       await FlutterLocalNotificationsPlugin().show(
-        0,
-        '🔔 Alarm!',
-        'Selesaikan soal untuk mematikan alarm',
-        platformChannelSpecifics,
+        id: 0,
+        title: '🔔 Alarm!',
+        body: 'Selesaikan soal untuk mematikan alarm',
+        notificationDetails: platformChannelSpecifics,
       );
 
       if (debug) debugPrint("Alarm notification shown");

@@ -9,10 +9,11 @@ class NotificationService {
   NotificationService._internal();
 
   static final FlutterLocalNotificationsPlugin _notificationsPlugin =
-  FlutterLocalNotificationsPlugin();
+      FlutterLocalNotificationsPlugin();
 
   // Stream untuk menangani notifikasi yang diklik
-  static final BehaviorSubject<String> onNotificationClick = BehaviorSubject<String>();
+  static final BehaviorSubject<String> onNotificationClick =
+      BehaviorSubject<String>();
 
   static Future<void> initialize() async {
     // Initialize timezone
@@ -20,10 +21,11 @@ class NotificationService {
 
     // Android settings
     const AndroidInitializationSettings androidSettings =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     // iOS settings
-    const DarwinInitializationSettings iosSettings = DarwinInitializationSettings(
+    const DarwinInitializationSettings iosSettings =
+        DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
@@ -37,7 +39,7 @@ class NotificationService {
 
     // Initialize with notification tap handler
     await _notificationsPlugin.initialize(
-      settings,
+      settings: settings,
       onDidReceiveNotificationResponse: (NotificationResponse response) async {
         // Handle notification tap
         onNotificationClick.add(response.payload ?? '');
@@ -59,7 +61,8 @@ class NotificationService {
     );
 
     await _notificationsPlugin
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
   }
 
@@ -70,7 +73,7 @@ class NotificationService {
     String? payload,
   }) async {
     const AndroidNotificationDetails androidDetails =
-    AndroidNotificationDetails(
+        AndroidNotificationDetails(
       'alarm_channel',
       'Alarm Notifications',
       channelDescription: 'Channel for alarm notifications',
@@ -90,10 +93,10 @@ class NotificationService {
     );
 
     await _notificationsPlugin.show(
-      id,
-      title,
-      body,
-      details,
+      id: id,
+      title: title,
+      body: body,
+      notificationDetails: details,
       payload: payload,
     );
   }
@@ -105,7 +108,8 @@ class NotificationService {
     required DateTime scheduledTime,
     String? payload,
   }) async {
-    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+    const AndroidNotificationDetails androidDetails =
+        AndroidNotificationDetails(
       'alarm_channel',
       'Alarm Notifications',
       channelDescription: 'Channel for alarm notifications',
@@ -120,21 +124,20 @@ class NotificationService {
     );
 
     await _notificationsPlugin.zonedSchedule(
-      id,
-      title,
-      body,
-      tz.TZDateTime.from(scheduledTime, tz.local),
-      details,
+      id: id,
+      title: title,
+      body: body,
+      scheduledDate: tz.TZDateTime.from(scheduledTime, tz.local),
+      notificationDetails: details,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-      UILocalNotificationDateInterpretation.absoluteTime,
       payload: payload,
     );
   }
 
   // Method untuk menampilkan notifikasi alarm dengan full screen intent
   static Future<void> showFullScreenAlarmNotification() async {
-    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+    const AndroidNotificationDetails androidDetails =
+        AndroidNotificationDetails(
       'alarm_channel',
       'Alarm Notifications',
       channelDescription: 'Channel for alarm notifications',
@@ -154,15 +157,15 @@ class NotificationService {
     );
 
     await _notificationsPlugin.show(
-      0,
-      '🔔 ALARM! 🔔',
-      'Selesaikan soal untuk mematikan alarm',
-      details,
+      id: 0,
+      title: '🔔 ALARM! 🔔',
+      body: 'Selesaikan soal untuk mematikan alarm',
+      notificationDetails: details,
     );
   }
 
   static Future<void> cancelNotification(int id) async {
-    await _notificationsPlugin.cancel(id);
+    await _notificationsPlugin.cancel(id: id);
   }
 
   static Future<void> cancelAllNotifications() async {
@@ -172,7 +175,8 @@ class NotificationService {
   // Method untuk mengecek status permission
   static Future<bool> areNotificationsEnabled() async {
     final details = await _notificationsPlugin
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.getNotificationChannels();
     return details != null && details.isNotEmpty;
   }
@@ -180,12 +184,13 @@ class NotificationService {
   // Method untuk request permission (khusus iOS)
   static Future<void> requestPermissions() async {
     await _notificationsPlugin
-        .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
+          alert: true,
+          badge: true,
+          sound: true,
+        );
   }
 
   // Dispose stream
