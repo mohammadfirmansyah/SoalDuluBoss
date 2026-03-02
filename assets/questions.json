@@ -1,0 +1,56 @@
+[
+  {
+    "question": "5 + 7 = ?",
+    "answer": "12",
+    "category": "math",
+    "difficulty": "easy"
+  },
+  {
+    "question": "12 × 8 = ?",
+    "answer": "96",
+    "category": "math",
+    "difficulty": "medium"
+  },
+  {
+    "question": "144 ÷ 12 = ?",
+    "answer": "12",
+    "category": "math",
+    "difficulty": "medium"
+  },
+  {
+    "question": "√169 = ?",
+    "answer": "13",
+    "category": "math",
+    "difficulty": "hard"
+  },
+  {
+    "question": "F = ma, jika m=5kg, a=2m/s², berapa F (dalam N)?",
+    "answer": "10",
+    "category": "physics",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Kecepatan cahaya (×10⁸ m/s)?",
+    "answer": "3",
+    "category": "physics",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Rumus kimia air?",
+    "answer": "H2O",
+    "category": "chemistry",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Nomor atom oksigen?",
+    "answer": "8",
+    "category": "chemistry",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Rumus kimia garam dapur?",
+    "answer": "NaCl",
+    "category": "chemistry",
+    "difficulty": "easy"
+  }
+]
