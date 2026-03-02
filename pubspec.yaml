@@ -18,8 +18,8 @@ dependencies:
   path_provider: ^2.1.1
 
   # Background Tasks & Alarm
-  android_alarm_manager_plus: ^3.0.3  # VERSI LAMA YANG STABIL
-  flutter_local_notifications: ^15.1.1  # VERSI LAMA YANG STABIL
+  android_alarm_manager_plus: ^5.0.0
+  flutter_local_notifications: ^20.1.0
 
   # Media & Haptic
   audioplayers: ^5.2.1  # VERSI LAMA YANG STABIL
@@ -30,7 +30,7 @@ dependencies:
   permission_handler: ^11.0.1  # VERSI LAMA YANG STABIL
 
   # Time & Date
-  timezone: ^0.9.2  # VERSI LAMA YANG STABIL
+  timezone: ^0.10.1
 
   # State Management
   rxdart: ^0.27.7  # VERSI LAMA YANG STABIL
